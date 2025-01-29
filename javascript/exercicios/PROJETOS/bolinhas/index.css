@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+main {
+    border: solid 2px black;
+    width: 100%;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: lightgray;
+    border: solid 2px black;
+    padding: 20px;
+}
+
+header > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .5em;
+    border-radius: .5em;
+    border: solid 1px black;
+    padding: 20px;
+    background-color: white;
+}
+
+header input {
+    border: solid 2px black;
+    padding: 5px;
+    border-radius: .5em;
+}
+
+#contador > input:hover{
+    cursor: not-allowed;
+}
+
+button {
+    background-color: gray;
+    color: white;
+    border: solid 1px transparent;
+    padding: 10px;
+    transition: 600ms;
+}
+
+button:hover {
+    border: solid 1px black;
+    letter-spacing: 1px;
+    background-color: lightgray;
+    color: gray;
+    cursor: pointer;
+}
+
+/* Especiais */
+
+.bolinha {
+    position: absolute;
+    border-radius: 100px;
+}

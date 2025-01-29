@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+#container {
+    max-width: 70em; /* Define uma largura máxima e ao reduzir a escala da tela não fica barra de rolagem horizontal */
+    margin: 1em auto; /* Auto cria uma margin automatica para os lados */
+    background-color: aliceblue;
+    padding: 1em;
+}
+
+header, footer, main { /* Agrupamento de seletores */
+    margin: .5em;
+    padding: 1em;
+    background-color: burlywood;
+    text-align: center;
+}
+
+header > nav{ /* Hereditáriedade */
+    padding: 1em;
+}
+
+header nav ol{
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+header nav ol li a{
+    transition: 0.5s;
+}
+
+header nav ol li a:hover{
+    color: aquamarine;
+    letter-spacing: .01em;
+    font-size: large;
+}
+
+header h1 a{
+    transition: .5s;
+}
+
+header h1 a:hover{
+    color: aquamarine;
+}

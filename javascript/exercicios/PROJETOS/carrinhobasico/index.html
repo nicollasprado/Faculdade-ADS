@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/index.css">
+    <title>Adicionar ao Carrinho</title>
+</head>
+<body>
+    <main>
+        <section id="esquerda">
+            <h1>PRODUTOS</h1>
+            <p id="p1" class="produto">Monitor</p>
+            <p id="p2" class="produto">Teclado</p>
+            <p id="p3" class="produto">Mouse</p>
+            <p id="p4" class="produto">Mousepad</p>
+        </section>
+        <section id="centro">
+            <button id="adicionar">Adicionar -></button>
+            <button id="remover"><- Remover</button>
+            <div id="adicao">
+                <label for="novo" class="addtxt" id="criarnovo">Adicionar Novo Produto</label>
+                <input type="text" name="add" id="novo" placeholder="Nome do Produto">
+            </div>
+            <div id="exclusao">
+                <button id="excluir">Excluir</button>
+            </div>
+        </section>
+        <section id="direita">
+            <h1>Carrinho</h1>
+        </section>
+    </main>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+    background-image: linear-gradient(200deg, hsl(213, 19%, 18%), hsl(216, 12%, 8%));
+    border-radius: 2em;
+    width: 300px;
+    padding: 2em;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Topo */
+
+.topo > .topo-estrela {
+    background-color: hsl(213, 19%, 18%);
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.topo > h1 {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+/* Notas */
+
+#notas {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1em;
+}
+
+#notas > button {
+    background-color: hsl(213, 19%, 18%);
+    padding: 15px;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 50%;
+    border-style: none;
+    color: hsl(217, 12%, 63%);
+}
+
+#notas > button:hover {
+    background-color: hsl(217, 12%, 63%);
+    transition: 600ms;
+    color: white;
+    cursor: pointer;
+}
+
+/* Botão */
+
+#btn-submit {
+    text-align: center;
+    letter-spacing: 1px;
+    padding: 1em;
+    background-color: hsl(25, 97%, 53%);
+    border-radius: 2em;
+    border-style: none;
+    color: white;
+}
+
+#btn-submit:hover {
+    background-color: white;
+    color: hsl(25, 97%, 53%);
+    transition: 600ms;
+    cursor: pointer;
+}
+
+.destaque {
+    background-color: hsl(25, 97%, 53%) !important;
+}

@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    padding: 10px;
+    height: 100vh;
+    background-color: cornflowerblue;
+}
+
+/* Inputs */
+
+main input {
+    outline-style: none;
+    transition: 600ms;
+}
+
+main input:focus {
+    padding: 1px;
+}
+
+/* Botão */
+
+#btnLogar {
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    transition: 600ms;
+}
+
+#btnLogar:hover {
+    letter-spacing: 1px;
+    color: grey;
+    cursor: pointer;
+}

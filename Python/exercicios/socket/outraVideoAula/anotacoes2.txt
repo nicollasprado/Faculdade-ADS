@@ -1,0 +1,6 @@
+# https://www.youtube.com/watch?v=DmrZyNiE6M4&list=PLrOQsSoS-V683sSaK3FzUxUJA6LPC5UyG&index=8
+
+# bind() se conecta a um ip e porta específico
+# listen() deixa o servidor em LISTEN MODE que permite o servidor a ver as conexões que está recebendo
+# accept() inicia a conexão com o client
+# close() desconecta o client

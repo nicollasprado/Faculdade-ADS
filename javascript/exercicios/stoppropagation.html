@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #caixa {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: gray;
+        }
+        .produto {
+            background-color: white;
+            padding: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="caixa">
+        <p id="p1" class="produto">Monitor</p>
+        <p id="p2" class="produto">Teclado</p>
+        <p id="p3" class="produto">Mouse</p>
+        <p id="p4" class="produto">Mousepad</p>
+    </div>
+    <script>
+        const caixa = document.getElementById('caixa')
+        const produtos = [...document.querySelectorAll('.produto')]
+
+        produtos.map((elementos) => {
+            elementos.addEventListener('click', (evento) => {
+                evento.stopPropagation()
+            })
+        })
+        
+        caixa.addEventListener('click', (evento)=> {
+            console.log('clicou')
+        })
+    </script>
+</body>
+</html>
