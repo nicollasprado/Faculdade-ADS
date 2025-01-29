@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Bolinhas</title>
+</head>
+<body>
+    <header>
+        <div id="contador">
+            <label for="numeroBolinhas">Número de Bolinhas:</label>
+            <input type="number" name="nb" id="numeroBolinhas" readonly>
+        </div>
+        <div id="addBolinhas">
+            <label for="bolinhasAdd">Quantidade para Adicionar:</label>
+            <input type="number" name="na" id="bolinhasAdd">
+            <button type="button" id="btnAdd">Adicionar</button>
+        </div>
+        <div id="configuracoes">
+            <button type="button">Remover Todas</button>
+        </div>
+    </header>
+    <main id="campo"></main>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+# Um abre a conexão e outro recebe a conexão (Servidor/Cliente)
+# O servidor que abre a conexão está ouvindo a um ip e uma porta específica
+# A conexão é feita por meio de uma API de conexão (Sockets de rede)
+# O socket é quem abre a porta de comunicação
+# A porta do cliente(geralmente maior de 1023) se conecta à porta do servidor
+# Portas abaixo de 1023 são reservadas para por exemplo dns, ssh
+# O socket permite que a aplicação se comunique com a CAMDA DE TRANSPORTE -> TCP/UDP

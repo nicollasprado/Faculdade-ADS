@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <main>
+        <h1>Calculadora 20000</h1>
+        <label for="inum1">Numero 1</label>
+        <input type="number" name="num1" id="inum1"> <br>
+        <label for="inum2">Numero 2</label>
+        <input type="number" name="num1" id="inum2"> <br>
+        <button onclick="somar()">Somar</button>
+        <div>
+            <h2>Resultado</h2>
+            <p id="resultado-texto">0</p>
+        </div>
+    </main>
+</body>
+
+<script>
+    function somar() {
+        var tn1 = window.document.getElementById('inum1')
+        var tn2 = window.document.querySelector('input#inum2')
+        var restxt = window.document.getElementById('resultado-texto')
+        var n1 = Number.parseInt(tn1.value)
+        var n2 = Number.parseInt(tn2.value)
+        var resultado = n1 + n2
+        restxt.innerHTML = `A soma entre ${n1} e ${n2} igual a ${resultado}`
+    }
+</script>
+
+</html>

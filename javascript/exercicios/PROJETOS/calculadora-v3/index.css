@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: .1em;
+    background-color: rgb(158, 158, 158);
+    border: solid 2px gray;
+    padding: 1px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#display {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    background-color: lightgreen;
+    padding: 10px;
+    width: 180px;
+    overflow-wrap: break-word;
+}
+
+/* Teclas */
+
+#teclas {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1px;
+}
+
+.tecla {
+    text-align: center;
+    background-color: white;
+    border: solid 1px transparent;
+    padding: 10px;
+}
+
+.teclaSimbolo, .teclaEspecial {
+    text-align: center;
+    background-color: lightgray;
+    border: solid 1px transparent;
+    padding: 10px;
+}
+
+
+#teclaIgual {
+    background-color: lightblue;
+    grid-column: span 2;
+    border: solid 1px transparent;
+    padding: 10px;
+}
+
+/* Tecla Hover */
+
+.tecla:hover, .teclaSimbolo:hover, .teclaEspecial:hover {
+    background-color: rgb(180, 180, 180);
+    cursor: pointer;
+}
+
+#teclaIgual:hover {
+    background-color: rgb(140, 194, 212);
+    cursor: pointer;
+}
+
+/* Especiais */

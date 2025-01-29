@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="corpo">
+        <div id="display">
+            <p id="contador">00:00:00</p>
+        </div>
+        <div id="alarmeHorario">
+            <p>Horário do Alarme:</p>
+            <p id="alarmeTxt"></p>
+        </div>
+        <label for="inputAlarme">Definir Alarme(segundos):</label>
+        <input type="number" name="in" id="inputAlarme">
+        <div id="botoes">
+            <button id="btnAtivar">Ativar</button>
+            <button id="btnParar">Parar</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="alarme.js"></script>
+</body>
+</html>

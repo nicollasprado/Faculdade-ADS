@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/verificador.js" defer></script>
+    <link rel="stylesheet" href="estilos/geral.css" media="all">
+    <link rel="stylesheet" href="estilos/index.css">
+    <link rel="stylesheet" href="estilos/mediaquery.css">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <title>Verificador de Idade</title>
+</head>
+<body>
+    <header>
+        <h1>Verificador de Idade</h1>
+    </header>
+
+    <main>
+            <div class="formulario">
+                <label for="idata" required>Ano de Nascimento</label>
+                <input type="number" name="data" id="idata" placeholder="Ano de Nascimento"> <!-- Min e Max em JS -->
+                <fieldset class="formulario-sexo">
+                    <legend>Sexo</legend>
+                    <div class="formulario-sexo-opcaoH">
+                        <input type="radio" name="sexo" id="ihomem" value="H">
+                        <label for="ihomem">Homem</label>
+                    </div>
+                    <div class="formulario-sexo-opcaoM">
+                        <input type="radio" name="sexo" id="imulher" value="M">
+                        <label for="imulher">Mulher</label>
+                    </div>
+                </fieldset>
+                <button type="submit" class="btn-verificar" onclick="verificar()">Verificar</button>
+            </div>
+            <div class="resultado">
+                <h2 id="resultadotxt">Preencha os Campos</h2>
+                <img src="imagens/interrogacao.jpg" alt="interrogacao" id="resultadoimg">
+            </div>
+    </main>
+
+    <footer>
+        <p>
+            Coded by <a href="https://github.com/NicollasMPP" target="_blank">NicollasMPP</a>
+        </p>
+    </footer>
+</body>
+</html>

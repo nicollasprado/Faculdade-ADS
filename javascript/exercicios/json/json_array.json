@@ -1,0 +1,25 @@
+[
+    {
+        "nome" : "Pedro",
+        "idade" : 23,
+        "null" : null,
+        "esta_trabalhando" : false,
+        "hobbies" : ["programar", "estudar"],
+        "detalhes_estudos" : {
+            "curso" : "javascript",
+            "professor" : "matheus"
+        },
+        "horas_estudo" : 8
+    },
+    {
+        "nome" : "Lucas",
+        "idade" : 19,
+        "esta_trabalhando" : true,
+        "hobbies" : ["programar", "academia"],
+        "detalhes_estudos" : {
+            "curso" : "php",
+            "professor" : "matheus"
+        },
+        "horas_estudo" : 9.5
+    }
+]

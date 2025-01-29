@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <h1>Cadastrar</h1>
+        <div id="Nome">
+            <label for="inputNome">Nome</label>
+            <input type="text" name="in" id="inputNome" required placeholder="Digite um Nome">
+        </div>
+        <div id="Portas">
+            <label for="inputPortas">Portas</label>
+            <input type="number" name="ip" id="inputPortas" required value="0">
+        </div>
+        <div id="Blindagem">
+            <label for="inputBlindagem">Blindagem</label>
+            <input type="number" name="ib" id="inputBlindagem" readonly value="0" min="0" max="100">
+        </div>
+        <div id="Munição">
+            <label for="inputMunicao">Munição:</label>
+            <input type="number" name="im" id="inputMunicao" readonly value="0">
+        </div>
+        <div id="Tipo">
+                <label for="radioMilitar">Militar</label>
+                <input type="radio" name="tipo" id="radioMilitar" value="M">
+                <label for="radioCivil">Civil</label>
+                <input type="radio" name="tipo" id="radioCivil" value="C" checked>
+        </div>
+        <button type="submit" id="btnAdd">Adicionar</button>
+        <div id="resultado">
+            <h1>Carros Cadastrados</h1>
+            <div id="resBtns">
+                <button id="btnRemover">Remover</button>
+                <button id="btnModificar">Modificar</button>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
