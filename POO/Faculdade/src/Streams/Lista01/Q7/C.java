@@ -11,10 +11,11 @@ public class C {
     public static void main(String[] args) {
         List<String> strs = Arrays.asList("test", "abc", "quadrado", "cinq", "jk");
 
-        Map groupsStr = strs.stream()
+        Map<Boolean, List<String>> groupsStr = strs.stream()
                 .collect(Collectors.groupingBy(n -> n.length() > 3));
-        String finalStr = groupsStr.get(true).toString().split("a|b");
 
-        System.out.println(finalStr);
+        String filteredStrs = (groupsStr.get(true)).stream().reduce(String::concat).orElse("");
+
+        System.out.println(filteredStrs);
     }
 }
