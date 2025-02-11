@@ -1,28 +1,84 @@
 #include <iostream>
 #include <vector>
 
-// Esaa função ainda vai ser corrigida
-bool check_ordened(std::vector<int>* list, int start_index, int final_index){
-    std::cout << start_index << " " << final_index << "\n";
-    if((final_index - start_index) <= 2){
-        std::cout << "TESTE" << "\n";
-        return (list->at(final_index) > list->at(start_index) ? true : false); 
+
+
+//////////////////////////////////////////////////////////////////
+void insert(std::vector<int>* list, int insertion_num, int ordened_final_index){
+    for(int i = 0; i < ordened_final_index; i++){
+        if(list->at(i) > insertion_num){
+            int aux = list->at(i);
+        }
+    }
+}
+
+void insertion_sort(std::vector<int>* list){
+    int ordened_final_index = 0;
+
+    for(int i = 0; i < list->size(); i++){
+        a
+    }
+}
+
+
+//////////////////////////////////////////////////////////////////
+// SELECTION SORT
+
+int get_smaller(std::vector<int>* list, int start_index){
+    int smaller = list->at(start_index);
+    int smaller_index = start_index;
+
+    for(int i = start_index; i < list->size(); i++){
+        if(smaller > list->at(i)){
+            smaller = list->at(i);
+            smaller_index = i;
+        }
     }
 
-    int center = (start_index + final_index) / 2;
-    bool first_half = check_ordened(list, start_index, center);
-    bool second_half = check_ordened(list, center + 1, final_index);
+    return smaller_index;
+}
 
-    std::cout << list->at(start_index) << " " << list->at(center) << "\n";
-    std::cout << list->at(center+1) << " " << list->at(final_index) << "\n";
+void selection_sort(std::vector<int>* list){
+    int aux;
 
-    return (first_half && second_half);
+    for(int i=0; i < list->size()-1; i++){
+        int smaller_index = get_smaller(list, i);
+
+        if(smaller_index == i) continue;
+
+        aux = list->at(i);
+        list->at(i) = list->at(smaller_index);
+        list->at(smaller_index) = aux;
+    }
+}
+
+//////////////////////////////////////////////////////////////////
+
+
+
+
+bool check_ordened(std::vector<int>* list){
+    bool ans = true;
+    for(int i=0; i < list->size()-1; i++){
+        if(list->at(i) > list->at(i+1)){
+            ans = false;
+            break;
+        }
+    }
+
+    return ans;
 }   
 
-
 int main(){
-    std::vector<int> test = {1, 6, 3, 4};
+    std::vector<int> test = {1, 6, 3, 4, 0};
 
-    std::cout << check_ordened(&test, 0, test.size()-1) << "\n";
+    selection_sort(&test);
+    
+    for(auto& iter : test){
+        std::cout << iter << " ";
+    }
+    std::cout << "\n";
+    
+    std::cout << (check_ordened(&test) ? "Odernado" : "Não ordenado") << "\n";
     return 0;
 }
