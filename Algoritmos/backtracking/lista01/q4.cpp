@@ -1,10 +1,10 @@
 #include <iostream>
 #include <vector>
 
-int backtrack(std::vector<std::vector<int>> grid, int row, int column, int r, int c, int final_row, int final_column){
-    if(r >= row || c >= column || grid.at(r).at(c) != 0) return 0;
+bool backtrack(std::vector<std::vector<int>> &grid, int row, int column, int r, int c, int final_row, int final_column){
+    if(r >= row || c >= column || r < 0 || c < 0 || grid[r][c] != 0) return false;
    
-    if(r == final_row && c == final_column) return 1;
+    if(r == final_row && c == final_column) return true;
    
     // pinta onde ja passou
     grid.at(r).at(c) = 9;
@@ -16,7 +16,6 @@ int backtrack(std::vector<std::vector<int>> grid, int row, int column, int r, in
         backtrack(grid, row, column, r-1, c-1, final_row, final_column);   // noroeste
    
     grid.at(r).at(c) = 0;
-   
     return res;
 }
 
@@ -24,8 +23,10 @@ int backtrack(std::vector<std::vector<int>> grid, int row, int column, int r, in
 int main(){
     int row, column;
     std::cin >> row >> column;
+
     int start_row, start_column;
     std::cin >> start_row >> start_column;
+
     int final_row, final_column;
     std::cin >> final_row >> final_column;
 
@@ -41,5 +42,5 @@ int main(){
         }
     }
 
-    std::cout << backtrack(grid, row, column, start_row, start_column, final_row, final_column) << std::endl;
+    std::cout << (backtrack(grid, row, column, start_row, start_column, final_row, final_column) ? "Possivel" : "Impossivel") << std::endl;
 }
