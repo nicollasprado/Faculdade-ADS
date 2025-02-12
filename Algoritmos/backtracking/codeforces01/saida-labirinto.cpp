@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 bool backtrack(int *grid, int linha, int coluna, int l, int c){
     // testes para ver se está no grid
@@ -26,11 +27,11 @@ int main(){
     int linha, coluna;
     std::cin >> linha >> coluna;
 
-    int grid[linha][coluna];
+    std::vector<std::vector<int>> grid;
 
-    for(int i=0; i < linha; i++){
-        for(int j=0; j < coluna; j++){
-            std::cin >> grid[i][j];
+    for(auto& row : grid){
+        for(auto& column : grid){
+            std::cin >> column;
         }
     }
 
