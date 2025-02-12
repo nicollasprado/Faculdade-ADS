@@ -1,11 +1,11 @@
 package Records.Lista01;
 
-public class q2 {
+//  Crie um record chamado Email com o campo endereco (String). Adicione um construtor personalizado para validar se o endereço contém o caractere @.
 
-    public record Email(String endereco){
+public class q2 {
+    private record Email(String endereco){
         public Email{
-            // arrumar regex
-            if(!endereco.matches("^(?=.*[A-Za-z]).+(?=.+@).+$")){
+            if(!endereco.matches("^[A-Za-z].+@[A-Za-z.].+$")){
                 throw new IllegalArgumentException("Endereço de email inválido!");
             }
         }
@@ -13,9 +13,9 @@ public class q2 {
 
     public static void main(String[] args) {
         Email mailOne = new Email("nicollas@teste.com");
-        Email mailTwo = new Email("@teste.com");
+        //Email mailTwo = new Email("@teste.com");
 
-        System.out.println(mailOne);
-        System.out.println(mailTwo);
+        System.out.println(mailOne.endereco());
+        //System.out.println(mailTwo);
     }
 }
