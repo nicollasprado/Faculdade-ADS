@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
 
-bool backtrack(int *grid, int linha, int coluna, int l, int c){
+bool backtrack(std::vector<std::vector<int>> &grid, int linha, int coluna, int l, int c){
     // testes para ver se está no grid
-    if(l < 0 || c < 0 || l >= linha || c >= coluna || *grid+l*c != 0) return false;
+    if(l < 0 || c < 0 || l >= linha || c >= coluna || grid[l][c] != 0) return false;
     // chegou no final
     if(l == linha-1 && c == coluna-1) return true;
 
@@ -27,10 +27,10 @@ int main(){
     int linha, coluna;
     std::cin >> linha >> coluna;
 
-    std::vector<std::vector<int>> grid;
+    std::vector<std::vector<int>> grid(linha, std::vector<int>(coluna, 0));
 
     for(auto& row : grid){
-        for(auto& column : grid){
+        for(auto& column : row){
             std::cin >> column;
         }
     }
