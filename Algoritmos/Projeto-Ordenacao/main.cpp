@@ -134,11 +134,11 @@ bool check_ordened(std::vector<int> &list){
 }
 
 int main(){
-    std::vector<int> test = {1, 6, 3, 4, 0};
+    std::vector<int> test = {6, 5, 3, 1, 0, -5};
 
     //selection_sort(test);
-    //insertion_sort(test);
-    merge_sort(test, 0, test.size()-1);
+    insertion_sort(test);
+    //merge_sort(test, 0, test.size()-1);
 
     // para teste
     for(auto& iter : test){
