@@ -24,15 +24,15 @@ g++ -Wall -o teste_ordenacao teste_ordenacao.cpp ordenacao.cpp
 ### Executando os testes
 - Selection Sort
 ```
-./teste_ordenacao -s < /testes/{nome do arquivo de teste}
+./teste_ordenacao -s < /testes/caso0{numero do caso}/{nome do arquivo de teste}
 ```
 - Insert Sort
 ```
-./teste_ordenacao -i < /testes/{nome do arquivo de teste}
+./teste_ordenacao -i < /testes/caso0{numero do caso}/{nome do arquivo de teste}
 ```
 - Merge Sort
 ```
-./teste_ordenacao -m < /testes/{nome do arquivo de teste}
+./teste_ordenacao -m < /testes/caso0{numero do caso}/{nome do arquivo de teste}
 ```
 
 <br>
