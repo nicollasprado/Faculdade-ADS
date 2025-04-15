@@ -4,11 +4,11 @@ import java.lang.reflect.Array;
 
 public class MyStack {
     private int redIndex = 0;
-    private int blackIndex = 8;
+    private int blackIndex = 7;
     private int size = 0;
     private int capacity = 8;
-    private Class<?> dataType;
     private Object[] data;
+    private Class<?> dataType;
 
 
 
@@ -19,49 +19,140 @@ public class MyStack {
     }
 
 
-    @SuppressWarnings("unchecked")
     private void increaseCapacity(){
-        try{
             int newCapacity = capacity*2;
-            Object newData = Array.newInstance(Class.forName("T"), newCapacity);
+            Object[] newData = (Object[]) Array.newInstance(Object.class, newCapacity);
 
-            for(int i = 0; i <= redIndex; i++){
+            for(int i = 0; i < redIndex; i++){
                 newData[i] = data[i];
             }
 
-            int newBlackIndex = newCapacity - blackIndex;
-            int auxBlackIndex = blackIndex;
-            for(int j = newBlackIndex; j < newCapacity; j++){
-                newData[j] = data[auxBlackIndex];
-
-                auxBlackIndex++;
+            int newBlackIndex = newCapacity - (capacity - blackIndex);
+            if(blackIndex < redIndex){
+                newBlackIndex++;
             }
-        }catch (Exception ignore){}
+
+            int auxBlackIndex = capacity-1;
+            if(blackIndex < capacity-1){
+                for(int j = newCapacity-1; j > newBlackIndex; j--){
+                    newData[j] = data[auxBlackIndex--];
+                }
+            }
+
+            this.data = newData;
+            this.capacity = newCapacity;
+            this.blackIndex = newBlackIndex;
+    }
+
+    private void decreaseCapacity(){
+        int newCapacity = capacity/2;
+        Object[] newData = (Object[]) Array.newInstance(Object.class, newCapacity);
+
+        for(int i = 0; i < redIndex; i++){
+            newData[i] = data[i];
+        }
+
+        int newBlackIndex = newCapacity - (capacity - blackIndex);
+        if(blackIndex < redIndex){
+            newBlackIndex++;
+        }
+
+        int auxBlackIndex = capacity-1;
+        if(blackIndex < capacity-1){
+            for(int j = newCapacity-1; j > newBlackIndex; j--){
+                newData[j] = data[auxBlackIndex--];
+            }
+        }
+
+        this.data = newData;
+        this.capacity = newCapacity;
+        this.blackIndex = newBlackIndex;
     }
 
 
-    public T topV(){
-        return data[redIndex];
+    public Object topV(){
+        return data[redIndex-1];
     }
 
-    public T topP(){
-        return data[blackIndex];
+    public Object topP(){
+        return data[blackIndex+1];
     }
 
-    public void pushV(T obj){
-        if(redIndex == blackIndex){
+    public void pushV(Object obj){
+        if(obj.getClass() != dataType){
+            throw new IllegalArgumentException("Tipo de dado invalido: " + obj.getClass().getSimpleName() + "  para um array de: " + dataType.getSimpleName());
+        }
+
+        if(data[redIndex] != null || redIndex == capacity-1){
             increaseCapacity();
         }
 
-        this.redIndex++;
         data[redIndex] = obj;
+        this.redIndex++;
+        this.size++;
+    }
+
+    public void pushP(Object obj){
+        if(obj.getClass() != dataType){
+            throw new IllegalArgumentException("Tipo de dado invalido: " + obj.getClass().getSimpleName() + "  para um array de: " + dataType.getSimpleName());
+        }
+
+        if(data[blackIndex] != null || blackIndex == 0){
+            increaseCapacity();
+        }
+
+        data[blackIndex] = obj;
+        this.blackIndex--;
+        this.size++;
+    }
+
+    public void popV(){
+        Object prev = data[redIndex];
+        Object actual;
+        for(int i = redIndex-1; i >= 0; i--){
+            actual = data[i];
+            data[i] = prev;
+            prev = actual;
+        }
+
+        this.redIndex--;
+        this.size--;
+
+        if(size <= (capacity * 0.3)){
+            decreaseCapacity();
+        }
+    }
+
+    public void popP(){
+        Object prev = data[blackIndex];
+        Object actual;
+        for(int i = blackIndex+1; i < capacity; i++){
+            actual = data[i];
+            data[i] = prev;
+            prev = actual;
+        }
+
+        this.blackIndex++;
+        this.size--;
+
+        if(size <= (capacity * 0.3)){
+            decreaseCapacity();
+        }
     }
 
 
-    @SuppressWarnings("unchecked")
     public MyStack(Class<?> T) {
         try{
-            this.data = Array.newInstance(T, 8);
+            this.data = (Object[]) Array.newInstance(T, 8);
+            this.dataType = T;
         }catch (Exception ignore){}
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
 }
