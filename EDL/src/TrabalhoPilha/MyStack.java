@@ -1,6 +1,7 @@
 package TrabalhoPilha;
 
 import java.lang.reflect.Array;
+import java.util.EmptyStackException;
 
 public class MyStack {
     private int redIndex = 0;
@@ -70,11 +71,23 @@ public class MyStack {
     }
 
 
+    public boolean isEmpty(){
+        return size > 0;
+    }
+
     public Object topV(){
+        if(redIndex == 0){
+            throw new EmptyStackException();
+        }
+
         return data[redIndex-1];
     }
 
     public Object topP(){
+        if(blackIndex == capacity-1){
+            throw new EmptyStackException();
+        }
+
         return data[blackIndex+1];
     }
 
@@ -107,6 +120,10 @@ public class MyStack {
     }
 
     public void popV(){
+        if(size <= 0){
+            throw new EmptyStackException();
+        }
+
         Object prev = data[redIndex];
         Object actual;
         for(int i = redIndex-1; i >= 0; i--){
@@ -124,6 +141,10 @@ public class MyStack {
     }
 
     public void popP(){
+        if(size <= 0){
+            throw new EmptyStackException();
+        }
+
         Object prev = data[blackIndex];
         Object actual;
         for(int i = blackIndex+1; i < capacity; i++){
