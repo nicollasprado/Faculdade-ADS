@@ -1,0 +1,34 @@
+:root {
+    --bgColor: white;
+    --navColor: #0D405A;
+    --Color02: #427C93;
+    --headerColor: #1375a7;
+    --fontSmall: 16px;
+    --fontMedium: 20px;
+    --fontLarge: 30px;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    box-sizing: border-box;
+    text-decoration: none;
+    /* alteração do text-decoration não ta funcionando no index, criei um id especificio pra tirar dos a */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1{
+    font-size: var(--fontLarge);
+}
+
+a {
+    color: black;
+    font-size: var(--fontSmall);
+}
+
+body{
+    background-color: var(--bgColor);
+    max-width: 100vw;
+    max-height: 100vh;
+}

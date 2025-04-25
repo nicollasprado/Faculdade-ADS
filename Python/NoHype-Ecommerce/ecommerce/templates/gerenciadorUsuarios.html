@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Usuários</title>
+    <link rel="shortcut icon" href="../static/imgs/logo/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/styles/global.css">
+    <link rel="stylesheet" href="../static/styles/registrar.css">
+    <link rel="stylesheet" href="../static/styles/gerenciadorUsuarios.css">
+    <link rel="stylesheet" href="../static/styles/footer.css">
+</head>
+<body>
+    <header>
+        <a href="index" class="name">NEW</a>
+        <a href="index"><img src="../static/imgs/logo/logo.png" alt="caixa de entrada"></a>
+        <a href="index" class="name">HYPE</a>
+    </header>
+    <div>
+      <h2>Registrar Usuário</h2>
+      <form action="" method="POST">
+        {{ adm_form.csrf_token }}
+        <div class="inputBox">
+          <label for="">Usuário</label>
+          {{ adm_form.usuario }}
+      </div>
+      <div class="inputBox">
+        <label for="">Email</label>
+        {{ adm_form.email }}
+      </div>
+      <div class="inputBox">
+          <label for="">Senha</label>
+          {{ adm_form.senha }}
+      </div>
+      <input type="submit" value="Registrar">
+      </form>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <div class="alert alert-warning">
+          <ul class="flashes">
+          {% for message in messages %}
+              <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+      </div>
+      {% endif %}
+      {% endwith %}
+    </div>
+    <main>
+      {% for user in users %}
+      <div>
+        <h1>{{ user[1] }}</h1>
+        <div>
+            <p>Email: {{ user[2] }}</p>
+            <p>Senha: {{ user[3] }}</p>
+        </div>
+        <form action="" method="POST">
+          <input type="submit" value="Exlcuir" class="btn btn-danger">
+        </form>
+      </div>
+      {% endfor %}
+    </main>
+    <footer>
+        <ol>
+            <li><a href="">Contato</a></li>
+            <li><a href="">Redes sociais</a></li>
+            <li><a href="">Trabalhe conosco</a></li>
+        </ol>
+        <ol>
+          <li><a href="">Politica de reembolso e devolução</a></li>
+          <li><a href="">Dúvidas frequentes</a></li>
+          <li><a href="">Tabela de medidas</a></li>
+        </ol>
+        <ol>
+          <li><a href="">Acompanhe seu pedido</a></li>
+          <li><a href="">Política de frete grátis</a></li>
+          <li><a href="">Encontre uma loja</a></li>
+        </ol>
+    </footer>
+
+<script src="../static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
