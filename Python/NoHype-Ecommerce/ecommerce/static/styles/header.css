@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
+
+header{
+    background-color: var(--bgColor);
+}
+
+header nav > ol{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--headerColor);
+    padding: 1em;
+    margin: 0;
+    border-bottom: 1px solid white;
+}
+
+header nav > ol > li{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    color: white;
+}
+
+header nav > ol > li#logomarca{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header nav > ol > li#logomarca a.name{
+    color: black;
+    font-size: 40px;
+    font-family: "Abril Fatface", serif;
+    text-decoration: none;
+}
+
+header > nav div button.dropdown-toggle:after{
+    content: none;
+}
+
+
+header > nav ol li div.carrinho{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+header > nav ol div div.login form div.recuperarConta{
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    margin-top: .5em;
+}
+
+header nav > ol > li > a > img{
+    width: 10em;
+    height: 10em;
+}
+
+
+header nav ol li#searchbar{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    width: 50em;
+    padding: .5em;
+    border-radius: 10px;
+}
+
+header nav ol li#searchbar input{
+    padding: 8px;
+    border: none;
+    width: 15em;
+    outline: none;
+    border-radius: 10px;
+}
+
+header nav ol li#searchbar label img{
+    width: 2em; 
+    height: 2em;
+    cursor: pointer;
+}
+
+header nav ol > div{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
+
+body > nav{
+    display: flex;
+    justify-content: space-evenly;
+    background-color:var(--navColor);
+    padding: .5em;
+}
+
+body > nav > div{
+    text-decoration: none;
+    color: white;
+}
+
+/* Underline effect */
+body > nav > div::after{
+    content: '';
+    position: absolute;
+    height: 2px;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    background: white;
+    transition: all .2s;
+}
+
+body > nav > div:hover::after{
+    width: 100%;
+    left: 0;
+}
+
+
+nav div button.dropdown-toggle{
+    background-color: transparent;
+    border: none;
+}
+
+nav div button.dropdown-toggle:hover{
+    background-color: transparent;
+}
+
+
+
+@media screen and (max-width: 768px){
+    
+    header nav > ol{
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        background-color: var(--headerColor);
+        padding: .5em;
+        margin: 0;
+        border-bottom: 1px solid white;
+    }
+
+    header nav > ol > li#logomarca a.name{
+        color: black;
+        font-size: 30px;
+        font-family: "Abril Fatface", serif;
+        text-decoration: none;
+    }
+
+    header nav > ol > li > a > img{
+        width: 7em;
+        height: 7em;
+    }
+    
+    header nav ol li#searchbar{
+        display: none;
+    }
+
+    body > nav{
+        display: flex;
+        justify-content: space-evenly;
+        background-color:var(--navColor);
+        padding: .5em;
+    }
+
+    body > nav div.substituivel{
+        display: none;
+    }
+}

@@ -1,0 +1,47 @@
+body > div{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+body div > div#leftpart{
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    padding: 1em;
+}
+
+
+body div div .form-filtro{
+    display: flex;
+    flex-direction: column;
+    width: 15vw;
+    gap: .5em;
+}
+
+body div main > div{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+body > div main > div.card{text-align: center; width: 28em;}
+
+body div main{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    width: 80vw;
+    padding: 1em;
+}
+
+@media screen and (max-width: 768px){
+    body div main{
+        margin: 0 auto;
+        padding: 1em 0;
+    }
+
+    body div > div#leftpart{
+        display: none;
+    }
+}

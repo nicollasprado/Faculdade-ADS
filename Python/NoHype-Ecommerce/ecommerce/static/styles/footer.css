@@ -1,0 +1,29 @@
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: var(--headerColor);
+    padding: 3em 1em 2em 1em;
+    border-top: 1px solid gray;
+}
+
+footer ol {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+footer ol li a{
+    color: white;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 768px){
+    footer{
+        flex-direction: column;
+    }
+    footer ol {
+        align-items: center;
+        gap: 1em;
+    }
+}
