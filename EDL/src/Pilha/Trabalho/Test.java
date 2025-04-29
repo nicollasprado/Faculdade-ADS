@@ -1,4 +1,4 @@
-package TrabalhoPilha;
+package Pilha.Trabalho;
 
 public class Test {
     public static void main(String[] args) {

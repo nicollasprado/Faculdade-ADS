@@ -1,4 +1,4 @@
-package TrabalhoPilha;
+package Pilha.Trabalho;
 
 import java.lang.reflect.Array;
 import java.util.EmptyStackException;
