@@ -1,0 +1,17 @@
+erdiagram Dependente
+
+notation=chen
+
+entity Empregado{
+    matricula key
+    nome
+}
+
+weak entity Dependente{
+    sequencia partial-key
+    nome
+}
+
+weak relationship Vinculo{
+    Dependente[0..N] -> Empregado[1..1]
+}

@@ -1,0 +1,25 @@
+erdiagram Empresa2
+
+notation=chen
+
+entity Grupo{
+    id key
+}
+
+entity Empresa{
+    id key
+    name
+}
+
+relationship GrupoEmpresa{
+    Grupo[1..N] -> Empresa[N]
+    id key
+}
+
+weak entity Filial{
+    sequence partial-key
+}
+
+weak relationship EmpresaFilial{
+    Filial[0..N] -> Empresa[1..1]
+}

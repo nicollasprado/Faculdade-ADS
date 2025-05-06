@@ -1,0 +1,21 @@
+erdiagram Consulta
+
+notation=chen
+
+entity Medico{
+    crm key
+    nome
+    especialidades multivalued
+    email optional
+}
+
+entity Paciente{
+    cpf key
+    nome
+    endereco
+    telefone multivalued
+}
+
+relationship Consulta{
+    Medico[1..N] -> Paciente[0..N]
+}
