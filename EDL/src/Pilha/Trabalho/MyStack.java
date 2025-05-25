@@ -9,7 +9,6 @@ public class MyStack {
     private int size = 0;
     private int capacity = 8;
     private Object[] data;
-    private Class<?> dataType;
 
 
 
@@ -22,7 +21,7 @@ public class MyStack {
 
     private void increaseCapacity(){
             int newCapacity = capacity*2;
-            Object[] newData = (Object[]) Array.newInstance(Object.class, newCapacity);
+            Object[] newData = new Object[newCapacity];
 
             for(int i = 0; i < redIndex; i++){
                 newData[i] = data[i];
@@ -47,7 +46,7 @@ public class MyStack {
 
     private void decreaseCapacity(){
         int newCapacity = capacity/2;
-        Object[] newData = (Object[]) Array.newInstance(Object.class, newCapacity);
+        Object[] newData = new Object[newCapacity];
 
         for(int i = 0; i < redIndex; i++){
             newData[i] = data[i];
@@ -92,10 +91,6 @@ public class MyStack {
     }
 
     public void pushV(Object obj){
-        if(obj.getClass() != dataType){
-            throw new IllegalArgumentException("Tipo de dado invalido: " + obj.getClass().getSimpleName() + "  para um array de: " + dataType.getSimpleName());
-        }
-
         if(data[redIndex] != null || redIndex == capacity-1){
             increaseCapacity();
         }
@@ -106,10 +101,6 @@ public class MyStack {
     }
 
     public void pushP(Object obj){
-        if(obj.getClass() != dataType){
-            throw new IllegalArgumentException("Tipo de dado invalido: " + obj.getClass().getSimpleName() + "  para um array de: " + dataType.getSimpleName());
-        }
-
         if(data[blackIndex] != null || blackIndex == 0){
             increaseCapacity();
         }
@@ -162,12 +153,7 @@ public class MyStack {
     }
 
 
-    public MyStack(Class<?> T) {
-        try{
-            this.data = (Object[]) Array.newInstance(T, 8);
-            this.dataType = T;
-        }catch (Exception ignore){}
-    }
+    public MyStack() {}
 
     public int getSize() {
         return size;
