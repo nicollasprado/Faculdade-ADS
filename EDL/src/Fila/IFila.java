@@ -1,4 +1,4 @@
-package Fila.Projeto;
+package Fila;
 
 public interface IFila {
     public abstract void enqueue(Object o);
