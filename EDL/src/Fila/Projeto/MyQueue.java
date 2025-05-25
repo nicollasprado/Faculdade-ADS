@@ -1,8 +1,10 @@
 package Fila.Projeto;
 
+import Fila.IFila;
+
 import java.util.NoSuchElementException;
 
-public class MyQueue implements IFila{
+public class MyQueue implements IFila {
     private int startIndex = 0;
     private int endIndex = 0;
     private int capacity = 8;
