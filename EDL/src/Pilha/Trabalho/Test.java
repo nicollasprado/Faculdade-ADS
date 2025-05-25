@@ -2,7 +2,7 @@ package Pilha.Trabalho;
 
 public class Test {
     public static void main(String[] args) {
-        MyStack stack = new MyStack(Integer.class);
+        MyStack stack = new MyStack();
 
         stack.pushV(1);
         stack.pushV(2);
