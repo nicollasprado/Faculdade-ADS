@@ -14,6 +14,4 @@ public interface ILista {
     void removeAt(int i);
     int size();
     boolean isEmpty();
-    boolean isFirst(int i);
-    boolean isLast(int i);
 }

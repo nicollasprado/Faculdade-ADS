@@ -1,4 +1,6 @@
-package Lista;
+package Lista.Projeto;
+
+import Lista.ILista;
 
 import java.util.NoSuchElementException;
 
@@ -6,6 +8,15 @@ public class MyLista implements ILista {
     private int capacity = 8;
     private int size = 0;
     private Object[] data = new Object[8];
+
+    public MyLista(){}
+
+    public void print(){
+        for(Object o : data){
+            System.out.print(o + ", ");
+        }
+        System.out.println();
+    }
 
     private void increaseCapacity(){
         int newCapacity = capacity * 2;
@@ -32,8 +43,12 @@ public class MyLista implements ILista {
 
     @Override
     public Object before(int i) {
-        if(i >= size){
+        if(i >= size || i < 0){
             throw new IndexOutOfBoundsException();
+        }
+
+        if(i == 0){
+            throw new IllegalArgumentException();
         }
 
         return data[i-1];
@@ -41,12 +56,12 @@ public class MyLista implements ILista {
 
     @Override
     public Object after(int i) {
-        if(i >= size){
+        if(i >= size || i < 0){
             throw new IndexOutOfBoundsException();
         }
 
         if(i == size-1){
-            throw new NoSuchElementException();
+            throw new IllegalArgumentException();
         }
 
         return data[i+1];
@@ -54,7 +69,7 @@ public class MyLista implements ILista {
 
     @Override
     public void replace(int i, Object o) {
-        if(i >= size){
+        if(i >= size || i < 0){
             throw new IndexOutOfBoundsException();
         }
 
@@ -63,7 +78,7 @@ public class MyLista implements ILista {
 
     @Override
     public void swap(int i, int p) {
-        if(i >= size || p >= size){
+        if(i >= size || p >= size || i < 0 || p < 0){
             throw new IndexOutOfBoundsException();
         }
 
@@ -74,7 +89,7 @@ public class MyLista implements ILista {
 
     @Override
     public void insertBefore(int i, Object o) {
-        if(i >= size){
+        if(i >= size || i < 0){
             throw new IndexOutOfBoundsException();
         }
 
@@ -86,16 +101,17 @@ public class MyLista implements ILista {
             increaseCapacity();
         }
 
-        for(int p = size-1; p >= i; p--){
+        for(int p = size; p > i; p--){
             data[p] = data[p-1];
         }
 
-        data[i-1] = o;
+        data[i] = o;
+        size++;
     }
 
     @Override
     public void insertAfter(int i, Object o) {
-        if(i >= size){
+        if(i >= size || i < 0){
             throw new IndexOutOfBoundsException();
         }
 
@@ -107,6 +123,7 @@ public class MyLista implements ILista {
             data[p] = data[p-1];
         }
 
+        size++;
         data[i+1] = o;
     }
 
@@ -120,6 +137,7 @@ public class MyLista implements ILista {
             data[p] = data[p-1];
         }
 
+        size++;
         data[0] = o;
     }
 
@@ -129,20 +147,21 @@ public class MyLista implements ILista {
             increaseCapacity();
         }
 
+        size++;
         data[size-1] = o;
     }
 
     @Override
     public void removeAt(int i) {
-        if(i >= size){
+        if(i >= size || i < 0){
             throw new IndexOutOfBoundsException();
         }
 
-        for(int p = i; p > ; p++){
-            data[p] = data[p-1];
+        for(int p = i; p < size; p++){
+            data[p] = data[p+1];
         }
 
-        data[i+1] = o;
+        size--;
     }
 
     @Override
@@ -152,16 +171,6 @@ public class MyLista implements ILista {
 
     @Override
     public boolean isEmpty() {
-        return false;
-    }
-
-    @Override
-    public boolean isFirst(int i) {
-        return false;
-    }
-
-    @Override
-    public boolean isLast(int i) {
-        return false;
+        return size == 0;
     }
 }
