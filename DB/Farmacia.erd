@@ -1,0 +1,66 @@
+erdiagram Farmacia
+
+notation=chen
+
+entity Client {
+    cpf key
+    name
+    birth_date
+    phone multivalued
+    address
+    prescriptions multivalued
+}
+
+entity Medication {
+    id key
+    name
+    label
+    expiration_date
+    required_prescription
+}
+
+entity Purchase {
+    id key
+    client_id
+    products multivalued
+    date
+    status
+}
+
+entity Prescrition {
+    id key
+    medic_crm
+}
+
+entity Seller {
+    cpf key
+    name
+    partial_bonus
+}
+
+entity PaymentWay {
+    id key
+    name
+    haveDiscount
+}
+
+
+relationship ClientPurchase {
+    Client[1] -> Purchase[1..N]
+}
+
+relationship MedicationPurchase {
+    Medication[1..N] -> Purchase[0..N]
+}
+
+relationship PrescriptionPurschase {
+    Prescrition[0..N] -> Purchase[1..N]
+}
+
+relationship SellerPurchase {
+    Seller[1..1] -> Purchase[0..N]
+}
+
+relationship PaymentWayPurchase {
+    PaymentWay[1..1] -> Purchase[0..N]
+}

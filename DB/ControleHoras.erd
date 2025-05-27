@@ -1,0 +1,52 @@
+erdiagram ControleHoras
+
+notation=chen
+
+entity Projeto{
+    id key
+    nome
+}
+
+entity Cliente{
+    cpf key
+    numero
+    nome
+}
+
+entity Desenvolvedor{
+    id key
+    nome
+    custoPorHora
+}
+
+weak entity DesenvolvedorAlocado{
+    sequencia partial-key
+    tempoAlocacao
+}
+
+weak entity HorasTrabalhadas{
+    sequence partial-key
+    tempoTrabalhado
+    comecouEm
+    terminouEm
+}
+
+relationship Possui{
+    DesenvolvedorAlocado[0..N] -> HorasTrabalhadas[1]
+}
+
+weak relationship Registra{
+    HorasTrabalhadas[0..N] -> Projeto[1]
+}
+
+relationship Pertence{
+    Projeto[N] -> Cliente[1..1]
+}
+
+weak relationship Alocado{
+    DesenvolvedorAlocado[1..N] -> Projeto[1..N]
+}
+
+relationship Referencia{
+    DesenvolvedorAlocado[0..N] -> Desenvolvedor[1..1]
+}
