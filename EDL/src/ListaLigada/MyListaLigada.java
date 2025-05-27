@@ -201,4 +201,30 @@ public class MyListaLigada implements ILista {
     public boolean isEmpty() {
         return size == 0;
     }
+
+    private NodeD positionFindFunc(int i, Object o, NodeD actualNode){
+        if(actualNode.getData() == o){
+            return actualNode;
+        }
+
+        if(i == size-1){
+            if(actualNode.getData() == o){
+                return actualNode;
+            }else{
+                return new NodeD(null, null, null);
+            }
+        }
+
+        return positionFindFunc(i+1, o, actualNode.getNext());
+    }
+
+    public NodeD positionFind(Object o){
+        NodeD foundNode = positionFindFunc(0, o, head);
+
+        if(foundNode.getData() == null){
+            throw new NoSuchElementException();
+        }
+
+        return foundNode;
+    }
 }
