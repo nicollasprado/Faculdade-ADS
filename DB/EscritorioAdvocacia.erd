@@ -1,0 +1,101 @@
+erdiagram EscritorioAdvocacia
+
+notation=chen
+
+entity Cliente{
+    id key
+    nome
+    endereco
+    email
+}
+
+entity ClientePessoaFisica extends Cliente{
+    cpf key
+}
+
+entity ClientePessoaJuridica extends Cliente{
+    cnpj key
+}
+
+entity Envolvido{
+    id key
+    nome
+    endereco
+    email
+}
+
+entity EnvolvidoPessoaFisica extends Envolvido{
+    cpf key
+}
+
+entity EnvolvidoPessoaJuridica extends Envolvido{
+    cnpj key
+}
+
+entity Processo{
+    id key
+    situacao
+    dataAbertura
+    dataConclusao
+}
+
+weak entity DadosProcesso{
+    sequencia partial-key
+    titulo
+    data
+    localizacao
+}
+
+entity Tribunal{
+    nomenclatura key
+    endereco
+}
+
+entity Vara{
+    nomenclatura key
+}
+
+weak entity Audiencia{
+    sequencia partial-key
+    data
+    recomendacoes
+}
+
+weak entity Despesas{
+    sequencia partial-key
+    custoCliente
+    custoEnvolvidos
+    dataLancamento
+}
+
+weak relationship Gera{
+    Despesas[1] -> Processo[1]
+}
+
+weak relationship Tem{
+    Audiencia[0..N] -> Processo[1]
+}
+
+relationship Pertence{
+    Vara[1..N] -> Tribunal[1]
+}
+
+relationship Tramite{
+    Processo[0..N] -> Vara[1]
+}
+
+relationship Servico{
+    Cliente[1] -> Processo[1..N]
+}
+
+relationship Reu{
+    Envolvido[1..N] -> Processo[1..N]
+}
+
+weak relationship receberDados{
+    DadosProcesso[0..N] -> Processo[1..1]
+}
+
+relationship enviarDados{
+    DadosProcesso[0..N] -> Cliente[1]
+}

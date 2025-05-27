@@ -1,0 +1,33 @@
+erdiagram Delegacia
+
+entity Person {
+    cpf key
+    rg
+    name
+    gender
+    birth_date
+}
+
+entity Victim extends Person {
+    cpf key
+    phone multivalued
+}
+
+entity Criminal extends Person {
+    cpf key
+}
+
+entity Gun {
+    id key
+    number optional
+    brand
+    type
+}
+
+relationship Crime {
+    Criminal[1..N] -> Victim[1..N]
+}
+
+relationship GunCrime {
+    Gun[1..N] -> Criminal[1..N]
+}
