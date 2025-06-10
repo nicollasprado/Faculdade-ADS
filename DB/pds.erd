@@ -1,0 +1,111 @@
+erdiagram BrainzV1
+
+notation=chen
+
+entity User{
+    id key
+    name
+    password
+    email
+    phone optional
+    imgUrl optional
+    actualStreak
+    highestStreak
+    createdAt
+}
+
+entity InterestArea {
+    id key
+    name
+}
+
+relationship interestedIn {
+    User[1] -> InterestArea[0..N]
+}
+
+entity Task{
+    id key
+    title
+    isCompleted
+    createdAt
+    expiresAt
+}
+
+relationship have{
+    Task[0..N] -> User[1..1]
+}
+
+weak entity Subtask{
+    sequence partial-key
+    title
+    isCompleted
+}
+
+weak relationship include{
+    Subtask[0..N] -> Task[1]
+}
+
+entity Group{
+    id key
+    name
+    description optional
+    maxUsersQt
+    iconUrl optional
+    bannerUrl optional
+    createdAt
+}
+
+entity Mission{
+    id key
+    title
+    description
+    createdAt
+    expiresAt
+}
+
+relationship _have{
+    Mission[0..N] -> Group[1]
+}
+
+entity GroupParticipant{
+    id key
+    isAdmin
+    actualPoints
+    totalPoints
+    createdAt
+}
+
+relationship refererTo{
+    GroupParticipant[0..N] -> User[1]
+}
+
+relationship participatesIn{
+    GroupParticipant[1..N] -> Group[1]
+}
+
+entity GroupParticipantMission{
+    id key
+    isCompleted
+    completedAt
+}
+
+relationship assignedTo{
+    GroupParticipantMission[1..N] -> Mission[1]
+}
+
+relationship _referTo{
+    GroupParticipantMission[0..N] -> GroupParticipant[1]
+}
+
+weak entity GroupPost{
+    sequence partial-key
+    title
+    description
+    imgUrl
+    createdAt
+    updatedAt
+}
+
+weak relationship have_{
+    GroupPost[0..N] -> GroupParticipant[1]
+}

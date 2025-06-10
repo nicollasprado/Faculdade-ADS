@@ -1,0 +1,85 @@
+Table user {
+  id uuid [pk, unique, not null]
+  name varchar [not null]
+  username varchar [unique, not null]
+  password varchar [not null]
+  email varchar [unique, not null]
+  phone varchar(20) [unique]
+  img_url varchar
+  actual_streak int [not null, default: 0]
+  highest_streak int [not null, default: 0]
+  created_at date [default: `now()`]
+}
+
+Table user_interest_area{
+  id uuid [pk]
+  user_id uuid [ref: > user.id, not null]
+  area_id int [ref: > interest_area.id, not null]
+}
+
+Table interest_area {
+  id int [pk, increment, unique, not null]
+  name varchar [not null]
+  description varchar
+}
+
+Table task {
+  id uuid [pk, unique, not null]
+  title varchar [not null]
+  is_completed boolean [not null, default: false]
+  created_at timestamp [default: `now()`]
+  expires_at timestamp [not null]
+  user_id uuid [ref: > user.id, not null]
+}
+
+Table subtask {
+  id int [pk, increment, not null, unique]
+  title varchar [not null]
+  is_completed boolean [not null, default: false]
+  task_id uuid [ref: > task.id, not null]
+}
+
+Table group {
+  id uuid [pk, unique, not null]
+  name varchar(64) [not null]
+  description varchar
+  icon_url varchar
+  banner_url varchar
+  created_at date [default: `now()`]
+}
+
+Table group_participant {
+  id uuid [pk, unique, not null]
+  is_admin boolean [not null, default: false]
+  current_points long [not null, default: 0]
+  total_points long [not null]
+  user_id uuid [ref: > user.id, not null]
+  group_id uuid [ref: > group.id, not null]
+}
+
+Table mission {
+  id int [pk, increment, unique, not null]
+  title varchar(32) [not null]
+  description varchar
+  created_at timestamp [not null, default: `now()`]
+  expires_at timestamp [not null]
+  group_id uuid [ref: > group.id, not null]
+}
+
+Table group_participant_post {
+  id int [pk, increment, unique, not null]
+  title varchar(32) [not null]
+  description varchar
+  img_url varchar
+  created_at timestamp [not null, default: `now()`]
+  edited boolean [not null, default: false]
+  group_participant_id uuid [ref: > group_participant.id, not null]
+}
+
+Table group_participant_mission {
+  id int [pk, increment, unique, not null]
+  is_completed boolean [not null, default: false]
+  completed_at timestamp [not null, default: `now()`]
+  group_participant_id uuid [ref: > group_participant.id, not null]
+  mission_id int [ref: > mission.id]
+}
