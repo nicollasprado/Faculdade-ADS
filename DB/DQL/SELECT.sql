@@ -1,0 +1,18 @@
+SELECT * FROM pessoa;
+SELECT email, nome, data_nasc FROM pessoa;
+SELECT email, nome, data_nasc FROM pessoa OFFSET 3 LIMIT 8;
+SELECT email, nome, (NOW()::date data_nasc) FROM pessoa;
+SELECT COUNT(*) FROM agendamento;
+SELECT dh_consulta, CONCAT("R$ ", valor_consulta - (valor_consulta * 0.05)) FROM agendamento;
+SELECT nome, cpf, email FROM paciente WHERE plano_saude == false;
+SELECT * FROM agendamento WHERE EXTRACT(month from dh_agendamento) == EXTRACT(month from NOW()::date);
+SELECT pessoa.cpf, pessoa.nome, pessoa.email FROM pessoa INNER JOIN paciente ON pessoa.cpf == paciente.cpf_pessoa WHERE pessoa.telefone is null;
+SELECT * FROM agendamento WHERE valor_consulta BETWEEN 50.0 AND 100.0;
+SELECT pessoa.cpf, pessoa.nome, pessoa.email FROM pessoa INNER JOIN paciente ON pessoa.cpf == paciente.cpf_pessoa WHERE endereco LIKE "%natal%";
+SELECT pessoa.cpf, pessoa.nome, pessoa.email FROM pessoa INNER JOIN paciente ON pessoa.cpf == paciente.cpf_pessoa ORDER BY pessoa.data_nasc ASC;
+SELECT COUNT(*) FROM paciente WHERE plano_saude == false;
+SELECT dh_consulta, MIN(valor_consulta) AS min_valor, MAX(valor_consulta) AS max_valor FROM agendamento;
+SELECT avg(valor_consulta) FROM agendamento WHERE EXTRACT(month from dh_consulta) == 12;
+SELECT pessoa.nome, pessoa.email FROM pessoa INNER JOIN agendamento ON pessoa.cpf == agendamento.cpf_paciente WHERE pessoa.data_nasc == dh_agendamento;
+SELECT pessoa.nome, pessoa.email, pessoa.cpf, especialidade.descricao FROM pessoa INNER JOIN medico_especialidade ON pessoa.cpf == medico_especialidade.cpf_medico INNER JOIN especialidade ON medico_especialidade.id_especialidade == especialidade.id;
+SELECT medico.cpf_medico, COUNT(*) FROM medico INNER JOIN agendamento ON medico.cpf_medico == agendamento.cpf_medico;
