@@ -1,8 +1,5 @@
 package Heap.FilaOrdenada.Array;
 
-// https://lerngruppe.gitbooks.io/algo2015/content/02_Basic_Data_Structures/02_08_Heaps.html
-// https://www.cs.purdue.edu/cgvlab/courses/251/lectures/slides/02.16-Heap.pdf
-
 public class Heap {
     private int size = 1;
     private int capacity = 8;
@@ -16,6 +13,7 @@ public class Heap {
         for(Object node : this.nodes){
             System.out.print(node + ", ");
         }
+        System.out.println();
     }
 
     private void increaseCapacity() {
@@ -77,7 +75,7 @@ public class Heap {
     }
 
     public void insert(Object data){
-        if(size == capacity) increaseCapacity();
+        if(size+1 >= capacity) increaseCapacity();
 
         nodes[size] = data;
 
@@ -86,23 +84,36 @@ public class Heap {
         this.size++;
     }
 
-    private void downHeap(){
-        int iterIndex = 1;
+    private void downHeapRec(int index){
+        int leftIndex = index * 2;
+        int rightIndex = index * 2 + 1;
 
-        if(size == 1) return;
+        if(nodes[leftIndex] != null && compare(nodes[leftIndex], nodes[index]) == -1){
+            Object aux = nodes[index];
+            nodes[index] = nodes[leftIndex];
+            nodes[leftIndex] = aux;
+            downHeapRec(leftIndex);
+        }
 
-        while(true){
-            int leftIndex = iterIndex * 2;
-            int rightIndex = iterIndex * 2 + 1;
-
-            if(compare(nodes[leftIndex], nodes[iterIndex]) == -1){}
+        if(nodes[rightIndex] != null && compare(nodes[rightIndex], nodes[index]) == -1){
+            Object aux = nodes[index];
+            nodes[index] = nodes[rightIndex];
+            nodes[rightIndex] = aux;
+            downHeapRec(rightIndex);
         }
     }
 
+    private void downHeap(){
+        downHeapRec(1);
+    }
+
     public Object removeMin(){
+        if(size == 1) throw new RuntimeException("Empty queue");
+
         Object removed = nodes[1];
 
-        nodes[1] = nodes[size];
+        nodes[1] = nodes[size-1];
+        nodes[size-1] = null;
         size--;
 
         downHeap();
