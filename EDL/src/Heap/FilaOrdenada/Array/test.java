@@ -12,5 +12,21 @@ public class test {
         h.insert(1);
         h.insert(1);
         h.print();
+        h.removeMin();
+        h.print();
+        h.removeMin();
+        h.print();
+        h.removeMin();
+        h.print();
+        h.removeMin();
+        h.print();
+        h.removeMin();
+        h.print();
+        h.removeMin();
+        h.print();
+        h.removeMin();
+        h.print();
+        h.removeMin();
+        h.print();
     }
 }
