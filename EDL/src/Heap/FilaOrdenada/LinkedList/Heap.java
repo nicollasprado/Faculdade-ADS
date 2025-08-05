@@ -48,55 +48,72 @@ public class Heap {
         return root.getData();
     }
 
-    //  TODO- ARRUMAR UPHEAP
+    private enum CHILDREN_TYPE {
+        LEFT,
+        RIGHT
+    }
+
     private void upheap(){
         Node iter = last;
 
         while(true){
+            if(iter.getParent() == null){
+                break;
+            }
+
             Node parent = iter.getParent();
 
+            // if iter < parent
             if(compare(iter.getData(), parent.getData()) == -1){
-                if(parent.getLeft() != null){
-                    iter.setLeft(parent.getLeft());
-                }
+                CHILDREN_TYPE iterChildrenType = CHILDREN_TYPE.RIGHT;
+                if(parent.getLeft() != null && parent.getLeft() == iter) iterChildrenType = CHILDREN_TYPE.LEFT;
 
-                if(parent.getRight() != null){
-                    iter.setRight(parent.getRight());
-                }
+                Node parentLeftAux = parent.getLeft();
+                Node parentRightAux = parent.getRight();
 
-                if(iter.getLeft() != null){
-                    parent.setLeft(iter.getLeft());
-                    iter.getLeft().setParent(parent);
-                }
+                parent.setLeft(iter.getLeft());
+                if(iter.getLeft() != null) iter.getLeft().setParent(parent);
 
-                if(iter.getRight() != null){
-                    parent.setRight(iter.getRight());
-                    iter.getRight().setParent(parent);
+                parent.setRight(iter.getRight());
+                if(iter.getRight() != null) iter.getRight().setParent(parent);
+
+                if(iterChildrenType == CHILDREN_TYPE.LEFT){
+                    iter.setRight(parentRightAux);
+                    iter.setLeft(parent);
+                    if(parentRightAux != null) parentRightAux.setParent(iter);
+                }else{
+                    iter.setLeft(parentLeftAux);
+                    iter.setRight(parent);
+                    if(parentLeftAux != null) parentLeftAux.setParent(iter);
                 }
 
                 Node grandparent = parent.getParent();
 
-                if(grandparent.getLeft() == parent){
-                    grandparent.setLeft(iter);
-                }
-
-                if(grandparent.getRight() == parent){
-                    grandparent.setRight(iter);
-                }
-
-                parent.setParent(iter);
-                iter.setParent(grandparent);
-
-                if(parent == root){
+                if(grandparent == null){
+                    iter.setParent(null);
+                    parent.setParent(iter);
                     root = iter;
+                    if(iter == last) last = parent;
                     break;
                 }
 
-                if(iter == root) break;
+                CHILDREN_TYPE parentChildrenType = CHILDREN_TYPE.RIGHT;
+                if(grandparent.getLeft() != null && grandparent.getLeft() == parent) parentChildrenType = CHILDREN_TYPE.LEFT;
+
+                iter.setParent(grandparent);
+                parent.setParent(iter);
+                if(iter == last) last = parent;
+
+                if(parentChildrenType == CHILDREN_TYPE.LEFT){
+                    grandparent.setLeft(iter);
+                }else{
+                    grandparent.setRight(iter);
+                }
             }else{
                 break;
             }
         }
+
     }
 
     private void getNewLastPos(){
