@@ -1,6 +1,7 @@
-package Heap.FilaOrdenada;
+package Heap.FilaOrdenada.LinkedList;
 
 public class Node {
+    private Node parent = null;
     private Node left = null;
     private Node right = null;
     private Object data;
@@ -9,7 +10,17 @@ public class Node {
         this.data = data;
     }
 
-    public Node(Node left, Node right, Object data) {
+    public Node(Node parent) {
+        this.parent = parent;
+    }
+
+    public Node(Node parent, Object data) {
+        this.parent = parent;
+        this.data = data;
+    }
+
+    public Node(Node parent, Node left, Node right, Object data) {
+        this.parent = parent;
         this.left = left;
         this.right = right;
         this.data = data;
@@ -37,5 +48,13 @@ public class Node {
 
     public void setData(Object data) {
         this.data = data;
+    }
+
+    public Node getParent() {
+        return parent;
+    }
+
+    public void setParent(Node parent) {
+        this.parent = parent;
     }
 }
