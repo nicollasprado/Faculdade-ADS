@@ -38,21 +38,21 @@ public class test {
         h.print();
         h.insert(0);
         h.print();
-//        h.removeMin();
-//        h.print();
-//        h.removeMin();
-//        h.print();
-//        h.removeMin();
-//        h.print();
-//        h.removeMin();
-//        h.print();
-//        h.removeMin();
-//        h.print();
-//        h.removeMin();
-//        h.print();
-//        h.removeMin();
-//        h.print();
-//        h.removeMin();
-//        h.print();
+        h.removeMin();
+        h.print();
+        h.removeMin();
+        h.print();
+        h.removeMin();
+        h.print();
+        h.removeMin();
+        h.print();
+        h.removeMin();
+        h.print();
+        h.removeMin();
+        h.print();
+        h.removeMin();
+        h.print();
+        h.removeMin();
+        h.print();
     }
 }
