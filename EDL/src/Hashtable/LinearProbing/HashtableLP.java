@@ -25,6 +25,10 @@ public class HashtableLP {
         System.out.println();
     }
 
+    private double efficiency(){
+        return (double) size / capacity;
+    }
+
     private int hash(String name){
         String nameLower = name.toLowerCase();
 
@@ -108,7 +112,7 @@ public class HashtableLP {
         while(iterStudent != null && !iterStudent.name.equalsIgnoreCase("DELETED")){
             index++;
 
-            if(index >= capacity){
+            if(efficiency() >= 0.7 || index >= capacity){
                 increaseCapacity();
             }
 
