@@ -35,7 +35,7 @@ public class Playlist {
             Track parent = tracksHeap[parentIndex];
             int iterIndex = i;
 
-            while(parentIndex >= 1 && parent.getMusic().compareTo(track.getMusic()) > 0){
+            while(parentIndex >= 1 && parent.getMusic().compareTo(track.getMusic()) < 0){
                 tracksHeap[iterIndex] = parent;
                 tracksHeap[parentIndex] = track;
 
@@ -49,51 +49,27 @@ public class Playlist {
     }
 
     // ongoing
-    private Track[] downHeap(Track[] heap, int limit){
+    private void downHeap(Track[] heap, int limit){
         int iterIndex = 1;
-        int leftIndex = iterIndex * 2;
-        int rightIndex = iterIndex * 2 + 1;
 
-        Track track = heap[iterIndex];
-        Track left = heap[leftIndex];
-        Track right = heap[rightIndex];
+        while(iterIndex <= limit / 2){
+            int leftIndex = iterIndex * 2;
+            int rightIndex = leftIndex + 1;
 
-        while(iterIndex < limit && leftIndex < limit && rightIndex < limit){
-            System.out.println(iterIndex + " " + leftIndex + " " + rightIndex);
+            if(leftIndex > limit) break;
 
-            if(left != null && right != null){
-                boolean chooseLeft = left.getMusic().compareTo(right.getMusic()) > 0;
+            int largestIndex = leftIndex;
 
-                if(chooseLeft){
-                    heap[iterIndex] = left;
-                    heap[leftIndex] = track;
-                }else{
-                    heap[iterIndex] = right;
-                    heap[rightIndex] = track;
-                }
+            if(rightIndex <= limit && heap[rightIndex].getMusic().compareTo(heap[leftIndex].getMusic()) > 0){
+                largestIndex = rightIndex;
             }
 
-            if(left != null && left.getMusic().compareTo(track.getMusic()) > 0){
-                heap[iterIndex] = left;
-                heap[leftIndex] = track;
-            }
+            Track aux = heap[iterIndex];
+            heap[iterIndex] = heap[largestIndex];
+            heap[largestIndex] = aux;
 
-            if(right != null && right.getMusic().compareTo(track.getMusic()) > 0){
-                heap[iterIndex] = right;
-                heap[rightIndex] = track;
-            }
-
-            iterIndex = leftIndex;
-            leftIndex = leftIndex * 2;
-            rightIndex = leftIndex * 2 + 1;
-
-            if(rightIndex >= limit || leftIndex >= limit) break;
-
-            left = heap[leftIndex];
-            right = heap[rightIndex];
+            iterIndex = largestIndex;
         }
-
-        return heap;
     }
 
     public boolean sort(SORT_TYPE sortType){
@@ -103,23 +79,12 @@ public class Playlist {
 
         Track[] tracksHeap = buildMaxHeapAlphabetical();
 
-        for(Track t : tracksHeap){
-            if(t != null) System.out.print(t.getMusic() + " | ");
-        }
+        for(int i = size; i > 1; i--){
+            Track aux = tracksHeap[1];
+            tracksHeap[1] = tracksHeap[i];
+            tracksHeap[i] = aux;
 
-        System.out.println();
-
-        int heapLimit = size;
-        for(int i = 1; i <= (size+1)/2; i++){
-            Track aux = tracksHeap[i];
-            tracksHeap[i] = tracksHeap[heapLimit];
-            tracksHeap[heapLimit] = aux;
-
-            downHeap(tracksHeap, heapLimit);
-        }
-
-        for(Track t : tracksHeap){
-            if(t != null) System.out.print(t.getMusic() + " | ");
+            downHeap(tracksHeap, i - 1);
         }
 
         return true;
