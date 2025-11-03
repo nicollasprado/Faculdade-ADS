@@ -3,69 +3,62 @@ package org.example.spotify;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.example.spotify.enums.SORT_TYPE;
 
+import java.io.*;
+
 public class Main {
     public static void main(String[] args) {
         Dotenv dotenv = Dotenv.load();
-        String id = dotenv.get("CLIENT_ID");
         SpotifyClient client = new SpotifyClient();
-        client.test();
 
-        Playlist playlist = new Playlist(6);
+        File file = new File("./busca.txt");
 
-        playlist.addTrack(new Track(
-                "Joao",
-                "2",
-                2002,
-                "Album",
-                "musicUrl",
-                "capeUrl"
-        ));
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(file));
 
-        playlist.addTrack(new Track(
-                "Bruno",
-                "8",
-                2002,
-                "Album",
-                "musicUrl",
-                "capeUrl"
-        ));
+            String artistName = "";
+            int limit = 0;
+            String country = "";
+            SORT_TYPE sortType = SORT_TYPE.RELEVANCIA;
 
-        playlist.addTrack(new Track(
-                "caio",
-                "5",
-                2002,
-                "Album",
-                "musicUrl",
-                "capeUrl"
-        ));
+            String line;
+            while((line = reader.readLine()) != null){
+                if(line.startsWith("NOME_ARTISTA")){
+                    String[] splitted = line.split("NOME_ARTISTA = ");
+                    artistName = splitted[1];
+                }
 
-        playlist.addTrack(new Track(
-                "via",
-                "3",
-                2002,
-                "Album",
-                "musicUrl",
-                "capeUrl"
-        ));
+                if(line.startsWith("QUANTIDADE_MUSICAS")){
+                    String[] splitted = line.split("QUANTIDADE_MUSICAS = ");
+                    limit = Integer.parseInt(splitted[1]);
+                }
 
-        playlist.addTrack(new Track(
-                "nic",
-                "9",
-                2002,
-                "Album",
-                "musicUrl",
-                "capeUrl"
-        ));
+                if(line.startsWith("PAIS_BUSCA")){
+                    String[] splitted = line.split("PAIS_BUSCA = ");
+                    country = splitted[1];
+                }
 
-        playlist.addTrack(new Track(
-                "vel",
-                "1",
-                2002,
-                "Album",
-                "musicUrl",
-                "capeUrl"
-        ));
+                if(line.startsWith("TIPO_ORDEM")){
+                    String[] splitted = line.split("TIPO_ORDEM = ");
+                    sortType = SORT_TYPE.valueOf(splitted[1]);
+                }
+            }
 
-        playlist.sort(SORT_TYPE.Alphabetical);
+            MyTrack[] tracks = client.fetch(artistName, limit, country);
+            Playlist playlist = new Playlist(tracks.length);
+
+            for(MyTrack t : tracks){
+                playlist.addTrack(t);
+            }
+
+            playlist.sort(sortType);
+
+            playlist.listAll();
+
+            System.out.println("------------");
+            playlist.find("2 Minutes to Midnight - 2015 Remaster");
+            playlist.find("Essa musica nem existe na vdd");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

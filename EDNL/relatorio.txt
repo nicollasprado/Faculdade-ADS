@@ -1,0 +1,5 @@
+Eu escolhi usar ArrayList para resolver o problema pois com ela eu consigo retornar a lista em O(1) caso seja ordenada por relevância - sem contar com o tempo para popular a lista que seria O(n) - e em O(n log n), usando heap sort, caso a ordem seja alfabetica.
+
+Por que nao usei Lista Ligada? apesar de fazer sentido no inicio, desisti da ideia após pensar que caso a ordem seja alfabética eu teria que iterar diversas vezes uma lista ligada e resultaria em um tempo de execução de O(n^2)
+
+Em relação ao algoritmo de inserção ele só insere com base no retorno da API que já esta em ordem de relevância, caso a ordenação seja alfabética eu faço um heap sort na lista.
